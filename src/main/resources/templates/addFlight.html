@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Update</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<h2>Hello!</h2>
+
+<h3>Tambah Penerbangan</h3>
+<form th:action="@{/flight/add/__${pilot.licenseNumber}__}" th:object="${pilot}" method="POST">
+    <div class="row">
+        <table class="table col-md-10">
+            <tr th:each="flight, iterStat : *{pilotFlight}">
+                <td><input class="form-control" type="text" placeholder="Flight Number" th:field="*{pilotFlight[__${iterStat.index}__].flightNumber}"></td>
+                <td><input class="form-control" type="text" placeholder="Origin" th:field="*{pilotFlight[__${iterStat.index}__].origin}"></td>
+                <td><input class="form-control" type="text" placeholder="Destination" th:field="*{pilotFlight[__${iterStat.index}__].destination}"></td>
+                <td><input class="form-control" type="date" placeholder="Time" th:field="*{pilotFlight[__${iterStat.index}__].time}"></td>
+            </tr>
+        </table>
+        <div class="col-md-2">
+            <button class="btn" type="submit" name="addRow">Add Flight</button>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+</body>
+</html>
