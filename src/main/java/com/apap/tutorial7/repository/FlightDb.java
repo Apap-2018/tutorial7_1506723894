@@ -13,4 +13,6 @@ public interface FlightDb extends JpaRepository<FlightModel, Long> {
     List<FlightModel> findByPilotLicenseNumber(String pilotLicenseNumber);
 
     void deleteByPilotLicenseNumber(String pilotLicenseNumber);
+
+    FlightModel findFlightModelById(Long id);
 }

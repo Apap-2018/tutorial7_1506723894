@@ -36,8 +36,8 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
-    public void updateFlight(String flightNumber, FlightModel flight) {
-        FlightModel flightData = flightDb.findByFlightNumber(flightNumber);
+    public void updateFlight(FlightModel flight) {
+        FlightModel flightData = flightDb.findFlightModelById(flight.getId());
         flightData.setOrigin(flight.getOrigin());
         flightData.setDestination(flight.getDestination());
         flightData.setTime(flight.getTime());
@@ -46,5 +46,10 @@ public class FlightServiceImpl implements FlightService {
     @Override
     public List<FlightModel> getAllFlight(){
         return flightDb.findAll();
+    }
+
+    @Override
+    public FlightModel getFlighByFlightId(long id){
+        return flightDb.findFlightModelById(id);
     }
 }

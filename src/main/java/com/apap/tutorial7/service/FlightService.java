@@ -14,7 +14,9 @@ public interface FlightService {
 
     List<FlightModel> getFlightByPilotLicenseNumber(String licenseNumber);
 
-    void updateFlight(String flightNumber, FlightModel flight);
+    void updateFlight(FlightModel flight);
 
     List<FlightModel> getAllFlight();
+
+    FlightModel getFlighByFlightId(long id);
 }

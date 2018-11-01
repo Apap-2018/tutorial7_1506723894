@@ -42,49 +42,33 @@ public class FlightController {
         return flightService.addFlight(flight);
     }
 
-    @RequestMapping(value = "/flight/delete", method = RequestMethod.POST)
-    private String deleteFlight(@ModelAttribute PilotModel pilot, Model model) {
-        for (FlightModel flight : pilot.getPilotFlight()) {
-            flightService.deleteFlight(flight);
-        }
-        model.addAttribute("pageTitle", "Delete");
-        return "delete";
-    }
-
-    @GetMapping(value = "/view/{flightNumber}")
-    private FlightModel getDetailFlightByFlightNumber(@PathVariable(value = "flightNumber") String flightNumber) {
-        return flightService.getFlighByFlightNumber(flightNumber);
+    @GetMapping(value = "/view/{id}")
+    private FlightModel getDetailFlightByFlightNumber(@PathVariable(value = "id") Long id) {
+        return flightService.getFlighByFlightId(id);
     }
 
     @DeleteMapping(value = "/delete")
-    private String delete(@RequestParam(value = "flightNumber") String flightNumber) {
-        FlightModel flight = flightService.getFlighByFlightNumber(flightNumber);
+    private String delete(@RequestParam(value = "id") Long id) {
+        FlightModel flight = flightService.getFlighByFlightId(id);
         flightService.deleteFlight(flight);
         return "flight has been deleted";
     }
 
-    @PutMapping(value = "/update/{flightNumber}")
-    private String updateFlightSubmit(@PathVariable(value = "flightNumber") String flightNumber,
+    @PutMapping(value = "/update/{id}")
+    private String updateFlightSubmit(@PathVariable(value = "id") Long id,
                                       @RequestParam("destination") String destination,
                                       @RequestParam("origin") String origin,
                                       @RequestParam("time") Date time) {
-        FlightModel flightModel = flightService.getFlighByFlightNumber(flightNumber);
+        FlightModel flightModel = flightService.getFlighByFlightId(id);
         flightModel.setDestination(destination);
         flightModel.setOrigin(origin);
         flightModel.setTime(time);
-        flightService.updateFlight(flightNumber, flightModel);
+        flightService.updateFlight(flightModel);
         return "flight update success";
     }
 
-    @RequestMapping(value = "/flight/add/{licenseNumber}", params = {"addRow"}, method = RequestMethod.POST)
-    public String addRow(@ModelAttribute PilotModel pilot, Model model) {
-        pilot.getPilotFlight().add(new FlightModel());
-        model.addAttribute("pilot", pilot);
-        return "addFlight";
-    }
-
     @GetMapping(value = "/all")
-    private List<FlightModel> getDetailFlightByFlightNumber() {
+    private List<FlightModel> getAllFlight() {
         return flightService.getAllFlight();
     }
 
