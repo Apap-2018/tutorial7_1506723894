@@ -15,10 +15,14 @@
     <div class="row">
         <table class="table col-md-10">
             <tr th:each="flight, iterStat : *{pilotFlight}">
-                <td><input class="form-control" type="text" placeholder="Flight Number" th:field="*{pilotFlight[__${iterStat.index}__].flightNumber}"></td>
-                <td><input class="form-control" type="text" placeholder="Origin" th:field="*{pilotFlight[__${iterStat.index}__].origin}"></td>
-                <td><input class="form-control" type="text" placeholder="Destination" th:field="*{pilotFlight[__${iterStat.index}__].destination}"></td>
-                <td><input class="form-control" type="date" placeholder="Time" th:field="*{pilotFlight[__${iterStat.index}__].time}"></td>
+                <td><input class="form-control" type="text" placeholder="Flight Number"
+                           th:field="*{pilotFlight[__${iterStat.index}__].flightNumber}"></td>
+                <td><input class="form-control" type="text" placeholder="Origin"
+                           th:field="*{pilotFlight[__${iterStat.index}__].origin}"></td>
+                <td><input class="form-control" type="text" placeholder="Destination"
+                           th:field="*{pilotFlight[__${iterStat.index}__].destination}"></td>
+                <td><input class="form-control" type="date" placeholder="Time"
+                           th:field="*{pilotFlight[__${iterStat.index}__].time}"></td>
             </tr>
         </table>
         <div class="col-md-2">

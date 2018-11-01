@@ -1,12 +1,12 @@
-package com.apap.tutorial5.service;
+package com.apap.tutorial7.service;
 
-import com.apap.tutorial5.model.FlightModel;
+import com.apap.tutorial7.model.FlightModel;
 
 import java.util.List;
 
 public interface FlightService {
 
-    void addFlight(FlightModel flight);
+    FlightModel addFlight(FlightModel flight);
 
     void deleteFlight(FlightModel flight);
 
@@ -15,4 +15,6 @@ public interface FlightService {
     List<FlightModel> getFlightByPilotLicenseNumber(String licenseNumber);
 
     void updateFlight(String flightNumber, FlightModel flight);
+
+    List<FlightModel> getAllFlight();
 }

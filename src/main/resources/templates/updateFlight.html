@@ -12,18 +12,18 @@
 
 <h3>Update Penerbangan</h3>
 <form th:action="@{/flight/update/__${flight.flightNumber}__}" th:object="${flight}" method="POST">
-    <input type="hidden" th:field="*{pilot}" />
+    <input type="hidden" th:field="*{pilot}"/>
     Flight Number: <br>
     <input type="text" name="flightNumber" th:value="${flight.flightNumber}" disabled/>
     <br>
     Origin: <br>
-    <input type="text" name="origin" th:value="${flight.origin}" />
+    <input type="text" name="origin" th:value="${flight.origin}"/>
     <br>
     Destiantion: <br>
-    <input type="text" name="destination" th:value="${flight.destination}" />
+    <input type="text" name="destination" th:value="${flight.destination}"/>
     <br>
     Time: <br>
-    <input type="date" name="time" th:value="${flight.time}" />
+    <input type="date" name="time" th:value="${flight.time}"/>
     <br><br>
     <button type="submit">Submit</button>
 </form>

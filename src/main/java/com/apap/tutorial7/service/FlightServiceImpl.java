@@ -1,7 +1,7 @@
-package com.apap.tutorial5.service;
+package com.apap.tutorial7.service;
 
-import com.apap.tutorial5.model.FlightModel;
-import com.apap.tutorial5.repository.FlightDb;
+import com.apap.tutorial7.model.FlightModel;
+import com.apap.tutorial7.repository.FlightDb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,30 +15,36 @@ public class FlightServiceImpl implements FlightService {
     private FlightDb flightDb;
 
     @Override
-    public void addFlight(FlightModel flight){
+    public FlightModel addFlight(FlightModel flight) {
         flightDb.save(flight);
+        return flight;
     }
 
     @Override
-    public void deleteFlight(FlightModel flight){
+    public void deleteFlight(FlightModel flight) {
         flightDb.delete(flight);
     }
 
     @Override
-    public FlightModel getFlighByFlightNumber(String flightNumber){
+    public FlightModel getFlighByFlightNumber(String flightNumber) {
         return flightDb.findByFlightNumber(flightNumber);
     }
 
     @Override
-    public List<FlightModel> getFlightByPilotLicenseNumber(String licenseNumber){
+    public List<FlightModel> getFlightByPilotLicenseNumber(String licenseNumber) {
         return flightDb.findByPilotLicenseNumber(licenseNumber);
     }
 
     @Override
-    public void updateFlight(String flightNumber, FlightModel flight){
+    public void updateFlight(String flightNumber, FlightModel flight) {
         FlightModel flightData = flightDb.findByFlightNumber(flightNumber);
         flightData.setOrigin(flight.getOrigin());
         flightData.setDestination(flight.getDestination());
         flightData.setTime(flight.getTime());
+    }
+
+    @Override
+    public List<FlightModel> getAllFlight(){
+        return flightDb.findAll();
     }
 }

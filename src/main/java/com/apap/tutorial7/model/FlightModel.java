@@ -1,4 +1,4 @@
-package com.apap.tutorial5.model;
+package com.apap.tutorial7.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
@@ -38,7 +38,6 @@ public class FlightModel implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pilot_licenseNumber", referencedColumnName = "license_number", nullable = false)
     @OnDelete(action = OnDeleteAction.NO_ACTION)
-    @JsonIgnore
     private PilotModel pilot;
 
     public FlightModel() {
